@@ -1,0 +1,30 @@
+server:
+  port: 9000
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: integration-consumer
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: 111111
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+    show-sql: true
+  activiti:
+    async-executor-activate: false #指示activiti在流程引擎启动就激活AsyncExecutor,异步
+    database-schema-update: true #自动更新数据库结构
+    database-schema: true
+    db-history-used: false
+    db-identity-used: false
+    jpa-enabled: false
+    check-process-definitions: false #自动检查、部署流程定义文件
+    process-definition-location-prefix: classpath:/processes/
+    process-definition-location-suffixes: .bpmn
