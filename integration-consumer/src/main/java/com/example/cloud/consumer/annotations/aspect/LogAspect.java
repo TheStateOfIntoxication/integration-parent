@@ -26,7 +26,6 @@ public class LogAspect {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        System.out.println(111);
         return null;
     }
 
