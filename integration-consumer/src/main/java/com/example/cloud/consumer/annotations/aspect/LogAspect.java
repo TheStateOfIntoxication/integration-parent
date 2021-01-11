@@ -12,9 +12,7 @@ import java.lang.reflect.Method;
 public class LogAspect {
 
     @Around("@annotation(com.example.cloud.consumer.annotations.SystemLog)")
-    public void getParams(ProceedingJoinPoint point) throws Exception {
-
-
+    public Object getParams(ProceedingJoinPoint point) throws Exception {
         Object[] args = point.getArgs();
         for (Object arg : args) {
             Class<?> clazz = arg.getClass();
@@ -28,6 +26,8 @@ public class LogAspect {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
+
+        return null;
     }
 
 }
