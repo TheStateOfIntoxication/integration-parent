@@ -3,7 +3,7 @@ package com.example.cloud.consumer.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.cloud.consumer.annotations.SystemLog;
+import com.example.cloud.consumer.utils.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,10 +25,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@SystemLog
 	public User register(User user) {
+		user.setId(UUIDGenerator.getUUID());
 		//userRepository.save(user);
-		return user;
+		return null;
 	}
 
 	@Override
