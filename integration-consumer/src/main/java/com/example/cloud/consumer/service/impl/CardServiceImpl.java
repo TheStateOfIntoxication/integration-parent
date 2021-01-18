@@ -73,6 +73,7 @@ public class CardServiceImpl implements CardService {
 					.setSortFlag(++i);
 			gameDeskList.add(gd);
 		}
+
 		return gameDeskList;
 	}
 	
