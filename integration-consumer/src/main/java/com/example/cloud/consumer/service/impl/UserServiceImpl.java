@@ -12,6 +12,9 @@ import com.example.cloud.consumer.repository.UserRepository;
 import com.example.cloud.consumer.service.UserService;
 import com.example.cloud.pojo.entity.User;
 
+/**
+ * @author yangRan
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {

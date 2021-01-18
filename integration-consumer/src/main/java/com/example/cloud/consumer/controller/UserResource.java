@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.cloud.consumer.service.UserService;
 import com.example.cloud.pojo.model.Result;
 
+/**
+ * @author yangRan
+ */
 @RestController
 @RequestMapping("user")
 public class UserResource {
