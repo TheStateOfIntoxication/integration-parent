@@ -21,7 +21,7 @@ public class CardUtil {
         Collections.shuffle(list);
     }
     public static void wash(List<Card> list, int severalTimes){
-    	if (severalTimes < 1) return;
+    	if (severalTimes < 1) {return;}
     	for (int i = 0; i < severalTimes; i++) {
     		Collections.shuffle(list);
 		}

@@ -31,15 +31,15 @@ public class LogAspect {
         for (Field field : declaredFields) {
             field.setAccessible(true);
             Validation validation = field.getDeclaredAnnotation(Validation.class);
-            if (validation == null) continue;
+            if (validation == null) {continue;}
             String str = field.get(arg).toString();
             if ("id".equals(field.getName())) {
                 boolean aNull = isNull(str);
-                if (aNull) return Result.create(Result.OK, "无此数据:"+field.get(arg), null);
+                if (aNull) {return Result.create(Result.OK, "无此数据:"+field.get(arg), null);}
             }
 
             String value = validation.value();
-            if (StringUtils.isEmpty(value)) continue;
+            if (StringUtils.isEmpty(value)) {continue;}
             if (!str.matches(value)){
                 return Result.create(Result.OK, field.getName()+"验证未通过"+value, null);
             }

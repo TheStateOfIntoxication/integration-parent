@@ -16,8 +16,11 @@ import com.example.cloud.pojo.entity.GameDesk;
 import com.example.cloud.pojo.entity.User;
 import com.example.cloud.pojo.utils.CardUtil;
 
+/**
+ * @author yangR
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CardServiceImpl implements CardService {
 
 	@Autowired
@@ -32,12 +35,15 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public Object beginGame() {
+		//人数
+		int peopleNum = 3;
+		String resultString = "人数不对";
 		List<User> users = userRepository.findAll();
-		if (users.size() != 3) {return "人数不对";}
+		if (users.size() != peopleNum) {return resultString;}
 		List<Card> cardList = cardRepository.findAll();
 		CardUtil.wash(cardList);
 		Map<String, List<Card>> dispense = CardUtil.dispense(cardList);
-		String roundId = UUIDGenerator.getUUID();
+		String roundId = UUIDGenerator.getUuid();
 
 		List<GameDesk> gameDeskList = new ArrayList<>();
 		gameDeskList.addAll(getCardsByUser(roundId, users.get(0).getId(), dispense, "a"));
@@ -54,7 +60,7 @@ public class CardServiceImpl implements CardService {
 		int i = 0;
 		for (Card card : aList) {
 			gd = new GameDesk()
-					.setId(UUIDGenerator.getUUID())
+					.setId(UUIDGenerator.getUuid())
 					.setRoundId(roundId)
 					.setUserId(userId)
 					.setCardId(card.getId())

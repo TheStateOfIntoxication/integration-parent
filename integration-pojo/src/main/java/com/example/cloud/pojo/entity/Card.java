@@ -18,15 +18,15 @@ public class Card {
 	@Id
 	private String id;
 	
-	@Column(name = "faces", nullable = true, length=10)
+	@Column(name = "faces", length=10)
 	private String faces;
 	
-	@Column(name = "colour_id", nullable = true, length=10)
-	private String colourId;
+	@Column(name = "colour", length=10)
+	private String colour;
 	
-	@Column(name = "special", nullable = true, length=10)
+	@Column(name = "special", length=10)
 	private Boolean special;
 	
-	@Column(name = "weight_coefficient", nullable = true, length=10)
+	@Column(name = "weight_coefficient", length=10)
 	private Integer weightCoefficient;
 }

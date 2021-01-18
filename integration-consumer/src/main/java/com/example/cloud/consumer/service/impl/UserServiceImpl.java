@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Override
 	public List<User> findAll() {
 		
 		return userRepository.findAll();
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User register(User user) {
-		user.setId(UUIDGenerator.getUUID());
+		user.setId(UUIDGenerator.getUuid());
 		//userRepository.save(user);
 		return null;
 	}
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(String... ids) {
 		List<String> idList = new ArrayList<>();
-		for (String id : ids) idList.add(id);
+		for (String id : ids) {idList.add(id);}
 		userRepository.deleteAll(userRepository.findByIdIn(idList));
 	}
 
