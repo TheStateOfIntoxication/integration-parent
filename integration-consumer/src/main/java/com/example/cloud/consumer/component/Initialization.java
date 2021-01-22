@@ -23,36 +23,20 @@ public class Initialization implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-
-        cardRepository.deleteAll();
-        cardRepository.saveAll(getCards(1));
-
+        List<Card> all = cardRepository.findAll();
+        if (all.isEmpty()) {
+            cardRepository.saveAll(getCards(1));
+        }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static List<Card> getCards(int num) {
+    private static List<Card> getCards(int num) {
         List<Card> list = new ArrayList<>();
         Card card;
         String str;
+        // 少于14张牌
+        int cardSize = 14;
         for (int k = 0; k < num; k ++) {
-            for (int i = 1; i < 14; i++) {
+            for (int i = 1; i < cardSize; i++) {
                 if (i == 1) {str = "A";}
                 else if (i == 11) {str = "J";}
                 else if (i == 12) {str = "Q";}
@@ -68,8 +52,10 @@ public class Initialization implements ApplicationRunner {
                     list.add(card);
                 }
             }
-            list.add(new Card(UUIDGenerator.getUuid(), "small", "", true, 53));
-            list.add(new Card(UUIDGenerator.getUuid(), "big", "", true, 54));
+            // 小王权重为 53, 大王权重为 54;
+            int smallWeight = 53, bigWeight = 54;
+            list.add(new Card(UUIDGenerator.getUuid(), "small", "", true, smallWeight));
+            list.add(new Card(UUIDGenerator.getUuid(), "big", "", true, bigWeight));
         }
         return list;
     }
